@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveDown : MonoBehaviour
+public abstract class Food : MonoBehaviour
 {
     [SerializeField] private float force = 10.0f;
-    private Rigidbody objectRb;
+    protected Rigidbody objectRb;
+    [SerializeField] private int score;
+    public int Score { get { return score; } private set { score = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +19,10 @@ public class MoveDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Action();
     }
+
+    protected abstract void Action();
 
     private void OnTriggerEnter(Collider other)
     {
